@@ -1,0 +1,727 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+  font-family: "Poppins", sans-serif;
+}
+
+/* :root - Represents an element that is the root of the document. In HTML 4, this is always the HTML element.*/
+:root {
+  --bg-color: #081b29;          /*bg - background*/
+  --bg-color: #081b29;         
+  --second-bg-color: #112e42;
+  --text-color: #ededed;
+  --main-color: #24d9e6;     /*#00abf0  */
+}
+
+html {
+  font-size: 62.5%;             /*hidden - The overflow is clipped, and the rest of the content will be invisible*/
+  overflow-x: hidden;           /*overflow property specifies whether to clip the content or to add scrollbars when*/
+}                                 /*the content of an element is too big to fit in the specified area*/         
+
+body{
+  background: var(--bg-color);
+  color: var(--text-color);
+  
+  background-image: url(images/canionMountain.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment:fixed;
+  background-size:cover;
+ 
+}
+
+.header{
+  position:fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 9%;      /*rem - root em.*/
+  background: transparent;
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  z-index:100;
+  transition: .3s;
+}
+
+.header.sticky{
+  background: var(--bg-color)
+}
+
+.logo{
+  font-size: 2.5rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.navbar a{
+  font-size: 1.7rem;
+  color:var(--text-color);
+  font-weight: 500;
+  margin-left: 3.5rem;
+  transition: .3s;             /*items take .5s to fall into place*/
+} 
+
+.navbar a:hover{
+  color: var(--main-color);
+  
+}
+
+.navbar a.active{
+  color: var(--main-color);
+}
+
+
+#menu-icon{
+  font-size: 3.6rem;
+  color: var(--text-color);
+  cursor: pointer;
+  display: none;
+}
+
+section {
+  min-height: 100vh;                       /*the minimum height of the element should be 100% of the viewport height*/
+  padding: 10rem 9% 2rem;                    /*(top, right & left, bottom)*/
+ 
+}
+
+.home{
+  display: flex;
+  align-items: center;
+  padding: 0 5%;                            /*0 takes to left while 9% takes ti to right*/
+
+  
+}
+
+.home-content{
+  max-width: 60rem;
+}
+
+.home-content h1{
+  font-size: 5.6rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.home-content .text-animate{
+  position: relative;
+  width: 51.8rem;
+}
+
+.home-content .text-animate h3{
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: transparent;    
+  -webkit-text-stroke: .7px var(--main-color);           /*to give it the blue outlining*/
+  background-image: linear-gradient(var(--main-color), var(--main-color));
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-position: 0 0;
+  animation: homeBgText 6s linear infinite;    /*Need to use keyframes for homeBgText*/
+  animation-delay: 2s;
+}
+
+.home-content .text-animate h3::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  /*border-right: 2px solid var(--main-color);*/
+  z-index: -1;
+  /*animation: homeCursorText 6s linear infinite;*/
+  animation-delay: 2s;
+}
+
+.home-content p{
+  font-size: 2rem;     /*1.6*/
+  margin: 2rem 0 4rem;                           /*2rem is for top-bottom, 0 is for left-right, 4rem is bottom*/
+  /*background: rgba(0,0,0,0.6);
+  border-radius: .5rem;
+  padding: 1rem;*/
+  font-weight: 20px;
+}
+
+.btn-box{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 48.5rem;   
+  height: 5rem;
+}
+
+.btn-box .btn{
+  position: relative;
+  display: inline-flex;
+  justify-content: center;                        /*horizontically aligns content to centre*/
+  align-items: center;                             /*vertically aligns content to centre*/
+  width: 23rem;    
+  height: 100%;
+  background: transparent;
+  border: 0.2rem solid var(--main-color);
+  border-radius: 0.8rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  color: var(--main-color);
+  z-index: 1;                                      /*snips away red corners that fall outside border, so that it*/
+  overflow: hidden;                                /*fits inside border perfectly*/
+  transition: .3s;
+}     
+
+
+.btn-box .btn:hover{
+  color: var(--bg-color);
+}
+                                             /*pseudo-element: used to style specific parts of element*/       
+.btn-box .btn::before{                       /*selector::pseudo-element*/
+   content: '';                              /*Adding style before the actual content, this is for fill*/ 
+   position:absolute;                       /*absolute so that red fill doesn't push content to side, rather moves*/
+   top:0;                                                   /*beneath the content*/
+   left: 0;
+   width: 0;                                
+   height: 100%;
+   background: var(--main-color);
+   z-index: -1;
+   transition: .3s;
+}
+
+
+.btn-box .btn:hover::before{
+  width: 100%;                             /*when hovering over button, red would fill 100% of button*/
+}
+
+
+.linkedIn{
+  position: absolute;
+  bottom: 6rem;
+  width: 170px;
+}
+
+.linkedIn a{
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 0.2rem solid var(--main-color);
+  border-radius: 50%;
+  font-size: 20px;
+  color: var(--main-color);
+  z-index: 1;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.linkedIn a::before{
+  content: '';
+  position:absolute;                       
+  top:0;                                                
+  left: 0;                      /*to change directions of effect, remove left an place right, then it fills from right*/
+  width: 0;                          /*to change effect, play with top,right,left,width and height, as well as*/         
+  height: 100%;                      /*hover::before below*/
+  background: var(--main-color);
+  transition: .3s;
+  z-index: -1;
+}
+
+.linkedIn a:hover::before{
+  width: 100%;                      /*fill goes 100% of width of element*/
+}
+
+.linkedIn a:hover{
+  color: var(--bg-color);               /*Changing color of text back to dark when hovering*/
+}
+
+
+/*-----------------------------------------ABOUT SECTION--------------------------------------------*/
+
+
+/*.about-img .circle-spin {
+  position: absolute;  */     /*Remember then when you set left: 50%; top 50% on the element, you are moving its top left*/
+  /*top: 50%;   */               /*corner to the center of its parent(which means it is not visually centered at all)*/
+  /*left:50%;             /*By moving the element back leftwards and upwards by half of its width and height respectively*/
+  /*transform: translate(-50%, -50%) rotate(0);    /*you are sure that its center now aligns with the parent's center*/
+  /*width: 100%;                                      /*move me leftwards by 50% of my width, along the x-axis*/
+  /*height: 100%; /*                                  /*and move me upwards by 50% of my height, along the y-axis*/
+ /* border-radius: 50%;
+  border-top:.2rem solid var(--second-bg-color);
+  border-bottom:.2rem solid var(--second-bg-color);
+  border-right: .2rem solid var(--main-color);
+  border-left:.2rem solid var(--main-color);
+}*/
+
+.about {
+  display: flex;
+  background: var(--second-bg-color);
+  flex-direction: row;
+  border-radius: 30rem;
+  justify-content:flex-start;
+  align-items: center;
+  /*align-items: flex-start;         /* NNEEEEWWWW*/
+}
+
+.about-box{
+ display: flex;
+ flex: 1;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap;
+}
+
+.about-img{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 30rem;
+ }
+
+ .about-content{
+  flex: 3 1 30rem;
+ }
+
+.about-img img {
+  /*width: 30rem;*/
+  max-width: 80%;                   
+  height: auto;     
+  border-radius: 35%;               
+}
+
+.heading{
+  font-size: 5rem;
+} 
+
+span {
+  color: var(--main-color);
+}
+
+
+.about-content h3{
+  font-size: 3rem;
+  }
+  
+  .about-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+  }
+
+
+  /*-----------------------------------------EDUCATION SECTION--------------------------------------------*/
+  
+  .education h2 {
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+
+.education-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;     /*The flex-wrap sets whether flex items are forced onto one line or can wrap onto multiple*/
+  flex-wrap: wrap;           /*lines.If wrapping is allowed, it sets the direction that lines are stacked*/
+  gap: 3rem;              /*without felx-wrap, boxes wont fall under each other when reducing screen size*/
+  
+}
+
+.education-container .education-box {
+  flex: 1 1 40rem;         /*The flex CSS property sets how a flex item will grow or shrink to fit the space*/ 
+  background: var(--second-bg-color);                          /*available in its flex container.*/
+  padding: 3rem 2rem 0rem;                             /*top, right & left, bottom*/
+  border-radius: 2rem;
+  text-align: center;
+  border: .3rem solid var(--second-bg-color);
+  transition: .3s ease;       /*transition speed for hovering effect (Transform)*/
+   
+}  
+
+.education-container .education-box:hover {
+ border-color: var(--main-color);
+ transform: scale(1.02);         /*Makes block pop up slightly when hovering*/
+}
+
+.education-box i {
+  font-size: 7rem;
+  color: var(--main-color);
+  margin-bottom: 2rem;
+}
+
+.education-box h3 {
+  font-size: 2.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.education-box p {
+  font-size: 1.6rem;
+  margin: 1rem 0 3rem;
+}
+
+.education-box .uni{
+  color: var(--main-color);
+}
+
+.education-box .dates{
+  font-size: 2rem;
+}
+
+/*-----------------------------------------SKILL SECTION--------------------------------------------*/
+.skills {
+  background: var(--second-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: auto;
+  padding-bottom: 5rem;
+  border-radius: 30rem 30rem 0 0;
+}
+
+.skills .skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  
+}
+
+.skills-row .skills-column {
+  flex: 1 1 100px;
+}
+
+
+.skills-column .title {
+  font-size: 2.8rem;
+  margin: 0 0 1.5rem 2rem;
+}
+
+.skills-column .skills-box {
+  border-left: .2rem solid var(--main-color);
+  
+}
+
+.skills-box .skills-content {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.skills-box .skills-content::before{        /*for shapes in the left-border line*/
+  content: '';
+  position:absolute;
+  top: 2rem;
+  left: -0.9rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  background: var(--main-color);
+  border-radius: 50%;
+}
+
+.skills-content .content {
+  position: relative;
+  padding: 1.5rem;
+  border: .2rem solid var(--main-color);
+  border-radius: .6rem;
+  margin-bottom: 2rem;
+  max-width: 30rem;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.skills-content .content::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--main-color);
+  z-index: -1;
+  transition: .3s;
+}
+
+.skills-content .content:hover::before{
+  width: 100%;
+}
+
+.skills-content .content:hover{
+  color: var(--second-bg-color);
+}
+
+.skills-content .content h3 {
+  font-size: 1.6rem;
+}
+
+
+/*----------------------------BREAKPOINTS MEDIA QUERIES-------------------------------- */
+
+
+@media(max-width:768px){
+  .header{
+    background: var(--bg-color);
+  }
+
+  
+  #menu-icon{
+    display: block;
+  }
+
+  .navbar{
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    padding: 1rem 4%;
+    background: var(--main-color);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+    transition: .25s ease;
+    transition-delay: .25s;
+    z-index: 1;
+  }
+
+  .navbar a{
+    display: block;
+    font-size: 2rem;
+    margin: 3rem 0;
+  }
+
+  .navbar.active{
+    left: 0;
+    transition-delay: 0s;
+  }
+
+  .navbar .active-nav{
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    border-top: .1rem solid rgba(0, 0, 0, .2);
+    z-index: -2;
+    transition: .25s ease;
+    transition-delay: 0s;
+  }
+
+  .navbar.active .active-nav{
+    left: 0;
+    transition-delay: .25s;
+  }
+}
+
+@media(max-width:732px){
+  html{
+    font-size: 50%;
+  }
+  .about-img img{
+    width: 70%;
+  }
+
+}
+
+@media(max-width:715px){
+  html{
+    font-size: 50%;
+  }
+  .about-img img{
+    width: 70%;
+  }
+
+}
+
+@media(max-width:598px)          /* NNEEEEWWWW*/
+{
+  html{
+    font-size: 45%;
+  }
+  .about-img img{
+    width: 70%;
+  }
+}
+
+@media (max-width:570px)
+{
+  html{
+    font-size: 45%;
+    
+  }
+  .about-img img{
+    width: 80%;
+  }
+  
+}
+
+@media (max-width:530px)
+{
+  html{
+    font-size: 40%;
+    
+  }
+  .about-img img{
+    width: 80%;
+  }
+}
+
+@media (max-width:520px)
+{
+  html{
+    font-size: 40%;
+    
+  }
+  .about-img img{
+    width: 80%;
+  }
+}
+
+@media (max-width:500px)            /* NNEEEEWWWW*/
+{
+  html{
+    font-size: 40%;
+    
+  }
+  .about-img img{
+    width: 80%;
+  }
+
+  .about-box{
+    padding-bottom: 0%;
+  }
+}
+
+@media (max-width:470px)
+{
+  html{
+    font-size: 40%;
+  }
+  .about-img img{
+    width: 55%;
+  }
+  .about-content{
+    padding-bottom: 10rem;
+  }
+}
+
+@media (max-width:455px)
+{
+  html{
+    font-size: 45%;
+  }
+  .about-img img{
+    width: 60%;
+  }
+}
+@media (max-width:415px){
+  html{
+    font-size: 40%;
+  }
+
+  .skills-column{
+    padding-bottom: 25rem;
+  }
+
+  .about-img{
+    bottom: 4rem;   /*8*/
+  }
+
+  .about-img img{
+    width: 68%;
+  }
+  .linkedIn{
+    bottom: 35rem;
+  }
+
+}
+
+@media (max-width:413px){
+  .home-content{
+    padding-bottom: 20rem;
+  }
+
+  .linkedIn{
+    bottom: 35rem;
+  }
+
+}
+
+@media (max-width:410px)
+{
+  html{
+    font-size: 40%;
+  }
+  .about-img img{
+    width: 65%;
+  }
+}
+
+@media (max-width:365px)
+{
+  html{
+    font-size: 40%;
+  }
+  .about-img img{
+    width: 60%;
+  }
+}
+@media (max-width:394px){
+  .linkedIn{
+    bottom: 23rem;
+  }
+
+}
+
+@media (max-width:391px){
+  .linkedIn{
+    bottom: 22rem;
+  }
+
+}
+
+@media (max-width:376px){
+  .linkedIn{
+    bottom: 8rem;
+  }
+}
+
+@media (max-width:350px)
+{
+  html{
+    font-size: 35%;
+  }
+  .about-img img{
+    width: 55%;
+  }
+}
+
+
+/*---------------------------------KEYFRAMES-----------------------------------*/
+
+/*for filling words with main color*/
+@keyframes homeBgText{
+  0%,10%,100%{
+    background-position: -52rem 0;
+  }
+
+  65%,85%{
+    background-position: 0 0;
+  }
+}
+
+
+/*@keyframes homeCursorText{
+  0%,10%,100%{
+    width: 0;
+  }
+
+  65%,85%{
+    width: 100%;
+    opacity: 1;
+  }
+}*/
+
+
